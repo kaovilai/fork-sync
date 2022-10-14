@@ -39,7 +39,7 @@ async function run() {
   }
 
   try {
-    let pr = await octokit.pulls.create({ owner: context.repo.owner, repo, title: prTitle, head: owner + ':' + head, base: base, body: prMessage, maintainer_can_modify: false });
+    let pr = await octokit.pulls.create({ owner: context.repo.owner, repo, title: prTitle, head: head, base: base, body: prMessage, maintainer_can_modify: false });
     await delay(20);
     if (autoApprove) {
         await octokit.pulls.createReview({ owner: context.repo.owner, repo, pull_number: pr.data.number, event: "COMMENT", body: "Auto approved" });
@@ -55,7 +55,7 @@ async function run() {
       );
     }
     if (!!error.errors && !!error.errors[0] && !!error.errors[0].message && error.errors[0].message.startsWith('No commits between')) {
-      console.log('No commits between ' + context.repo.owner + ':' + base + ' and ' + owner + ':' + head);
+      console.log('No commits between ' + context.repo.owner + ':' + base + ' and ' + head);
     } else if (!!error.errors && !!error.errors[0] && !!error.errors[0].message && error.errors[0].message.startsWith('A pull request already exists for')) {
       // we were already done
       console.log(error.errors[0].message);
