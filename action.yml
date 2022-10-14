@@ -1,6 +1,6 @@
-name: 'Fork Sync'
-description: 'Keep your fork up to date'
-author: 'tgymnich'
+name: 'Fork Sync With Custom Head'
+description: 'Keep your fork up to date and keeping your head up high'
+author: 'kaovilai'
 branding:
   icon: 'git-branch'
   color: 'black'
